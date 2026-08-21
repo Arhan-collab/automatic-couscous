@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>webOS Terminal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header id="topbar">
+    <div class="menu-left">
+      <span class="apple-logo"></span>
+      <span class="app-name"><b>webOS</b></span>
+      <span class="menu-item">File</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Help</span>
+    </div>
+    <div class="menu-right">
+      <span id="clock">00:00 AM</span>
+    </div>
+  </header>
+
+  <main id="desktop">
+    
+    <div class="window" id="window1">
+      <div class="window-header" id="window1-header">
+        <div class="window-controls">
+          <span class="btn close" onclick="closeWindow('window1')"></span>
+          <span class="btn minimize"></span>
+          <span class="btn maximize"></span>
+        </div>
+        <span class="title">Terminal — zsh</span>
+      </div>
+      <div class="window-content">
+        <p class="prompt"><span class="user">user@webos</span>:<span class="path">~</span>$ ./boot.sh</p>
+        <p class="response">[OK] System initialized. Ready for commands.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
