@@ -1,138 +1,40 @@
-:root {
-  --bg-gradient: radial-gradient(circle at 50% 30%, #1a1c23 0%, #0d0e12 100%);
-  --topbar-bg: rgba(18, 20, 26, 0.75);
-  --window-bg: #12141a;
-  --window-border: rgba(255, 255, 255, 0.1);
-  --text-main: #e2e8f0;
-  --text-dim: #64748b;
-  --accent-green: #3fb950;
-  --accent-blue: #58a6ff;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  user-select: none;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  background: var(--bg-gradient);
-  color: var(--text-main);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Top Navigation Bar */
-#topbar {
-  height: 28px;
-  background: var(--topbar-bg);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 14px;
-  font-size: 12px;
-  font-weight: 500;
-  z-index: 1000;
-}
-
-.menu-left, .menu-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.apple-logo {
+/* Custom OS Branding */
+.os-logo {
   font-size: 14px;
+  color: #00ffcc;
+  margin-right: 6px;
 }
 
-.menu-item {
-  color: var(--text-dim);
-  cursor: pointer;
+/* Interactive Terminal Styling */
+.terminal-body {
+  background-color: #0d1117;
+  color: #58a6ff;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 12px;
 }
 
-.menu-item:hover {
-  color: var(--text-main);
-}
-
-#clock {
-  color: var(--text-main);
-  font-feature-settings: "tnum";
-}
-
-/* Desktop */
-#desktop {
-  flex: 1;
-  position: relative;
-}
-
-/* Sleek Window Styling */
-.window {
-  position: absolute;
-  top: 80px;
-  left: 100px;
-  width: 440px;
-  background: var(--window-bg);
-  border: 1px solid var(--window-border);
-  border-radius: 10px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.window-header {
-  height: 36px;
-  background: #181a20;
-  padding: 0 12px;
+.terminal-input-row {
   display: flex;
   align-items: center;
-  position: relative;
-  cursor: move;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 8px;
 }
 
-.window-controls {
-  display: flex;
-  gap: 8px;
-  z-index: 2;
+.prompt {
+  color: #7ef7a0;
+  margin-right: 8px;
+  font-weight: bold;
 }
 
-.btn {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  cursor: pointer;
+#term-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: inherit;
+  flex: 1;
 }
 
-.btn.close { background: #ff5f56; }
-.btn.minimize { background: #ffbd2e; }
-.btn.maximize { background: #27c93f; }
-
-.btn.close:hover { opacity: 0.8; }
-
-.title {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-dim);
-  font-weight: 500;
+.highlight {
+  color: #f1e05a;
 }
-
-.window-content {
-  padding: 16px;
-  font-family: "JetBrains Mono", "Consolas", monospace;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.prompt .user { color: var(--accent-green); }
-.prompt .path { color: var(--accent-blue); }
-.response { color: var(--text-dim); margin-top: 4px; }

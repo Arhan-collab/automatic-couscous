@@ -1,45 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>webOS Terminal</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- Top Navigation Bar -->
+<div class="top-bar">
+  <div class="menu-left">
+    <span class="os-logo">⚡</span>
+    <span class="app-name"><b>WebOS X1</b></span>
+    <span class="menu-item">Terminal</span>
+    <span class="menu-item">System</span>
+  </div>
+  <div class="menu-right">
+    <span id="clock">00:00 AM</span>
+  </div>
+</div>
 
-  <header id="topbar">
-    <div class="menu-left">
-      <span class="apple-logo"></span>
-      <span class="app-name"><b>webOS</b></span>
-      <span class="menu-item">File</span>
-      <span class="menu-item">View</span>
-      <span class="menu-item">Help</span>
-    </div>
-    <div class="menu-right">
-      <span id="clock">00:00 AM</span>
-    </div>
-  </header>
-
-  <main id="desktop">
-    
-    <div class="window" id="window1">
-      <div class="window-header" id="window1-header">
-        <div class="window-controls">
-          <span class="btn close" onclick="closeWindow('window1')"></span>
-          <span class="btn minimize"></span>
-          <span class="btn maximize"></span>
-        </div>
-        <span class="title">Terminal — zsh</span>
+<!-- Main Desktop Area -->
+<div class="desktop">
+  <!-- Window 1: Terminal -->
+  <div class="window" id="terminal-window">
+    <div class="window-header" id="terminal-header">
+      <div class="window-buttons">
+        <span class="btn close"></span>
+        <span class="btn minimize"></span>
+        <span class="btn maximize"></span>
       </div>
-      <div class="window-content">
-        <p class="prompt"><span class="user">user@webos</span>:<span class="path">~</span>$ ./boot.sh</p>
-        <p class="response">[OK] System initialized. Ready for commands.</p>
+      <div class="window-title">terminal@webos-x1:~</div>
+    </div>
+    <div class="window-body terminal-body">
+      <div id="terminal-output">
+        <p>Welcome to WebOS X1 Terminal v1.0.0</p>
+        <p>Type <span class="highlight">'help'</span> for a list of available commands.</p>
+      </div>
+      <div class="terminal-input-row">
+        <span class="prompt">guest@webos-x1:~$</span>
+        <input type="text" id="term-input" autofocus autocomplete="off" placeholder="Type command here..." />
       </div>
     </div>
+  </div>
 
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <!-- Window 2: System Info (Ensures multiple draggable windows) -->
+  <div class="window" id="info-window" style="top: 150px; left: 350px;">
+    <div class="window-header" id="info-header">
+      <div class="window-buttons">
+        <span class="btn close"></span>
+        <span class="btn minimize"></span>
+        <span class="btn maximize"></span>
+      </div>
+      <div class="window-title">System Status</div>
+    </div>
+    <div class="window-body">
+      <h3>WebOS X1 Core</h3>
+      <p>Status: <b>Online</b></p>
+      <p>Custom Feature: <b>Interactive Command Parser</b></p>
+    </div>
+  </div>
+</div>
