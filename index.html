@@ -1,54 +1,71 @@
-<!-- Top Navigation Bar -->
-<div class="top-bar">
-  <div class="menu-left">
-    <span class="os-logo">⚡</span>
-    <span class="app-name"><b>WebOS X1</b></span>
-    <span class="menu-item">Terminal</span>
-    <span class="menu-item">System</span>
-  </div>
-  <div class="menu-right">
-    <span id="clock">00:00 AM</span>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebOS X1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<!-- Main Desktop Area -->
-<div class="desktop">
-  <!-- Window 1: Terminal -->
-  <div class="window" id="terminal-window">
-    <div class="window-header" id="terminal-header">
-      <div class="window-buttons">
-        <span class="btn close"></span>
-        <span class="btn minimize"></span>
-        <span class="btn maximize"></span>
-      </div>
-      <div class="window-title">terminal@webos-x1:~</div>
+  <!-- Top Menu Bar -->
+  <div class="top-bar">
+    <div class="menu-left">
+      <span class="os-logo">⚡</span>
+      <span class="app-name">WebOS X1</span>
+      <span class="menu-item">System</span>
+      <span class="menu-item">Terminal</span>
     </div>
-    <div class="window-body terminal-body">
-      <div id="terminal-output">
-        <p>Welcome to WebOS X1 Terminal v1.0.0</p>
-        <p>Type <span class="highlight">'help'</span> for a list of available commands.</p>
-      </div>
-      <div class="terminal-input-row">
-        <span class="prompt">guest@webos-x1:~$</span>
-        <input type="text" id="term-input" autofocus autocomplete="off" placeholder="Type command here..." />
-      </div>
+    <div class="menu-right">
+      <span id="clock">00:00:00 AM</span>
     </div>
   </div>
 
-  <!-- Window 2: System Info (Ensures multiple draggable windows) -->
-  <div class="window" id="info-window" style="top: 150px; left: 350px;">
-    <div class="window-header" id="info-header">
-      <div class="window-buttons">
-        <span class="btn close"></span>
-        <span class="btn minimize"></span>
-        <span class="btn maximize"></span>
+  <!-- Desktop Canvas -->
+  <div class="desktop">
+
+    <!-- Terminal Window -->
+    <div class="window" id="terminal-window" style="top: 80px; left: 100px;">
+      <div class="window-header" id="terminal-header">
+        <div class="window-buttons">
+          <span class="btn close"></span>
+          <span class="btn minimize"></span>
+          <span class="btn maximize"></span>
+        </div>
+        <div class="window-title">guest@webos-x1:~</div>
       </div>
-      <div class="window-title">System Status</div>
+      <div class="window-body terminal-body">
+        <div id="terminal-output">
+          <p>Welcome to WebOS X1 Shell v1.0.0</p>
+          <p>Type <span class="highlight">'help'</span> for available commands.</p>
+        </div>
+        <div class="terminal-input-row">
+          <span class="prompt">guest@webos-x1:~$</span>
+          <input type="text" id="term-input" autofocus autocomplete="off" placeholder="Type here..." />
+        </div>
+      </div>
     </div>
-    <div class="window-body">
-      <h3>WebOS X1 Core</h3>
-      <p>Status: <b>Online</b></p>
-      <p>Custom Feature: <b>Interactive Command Parser</b></p>
+
+    <!-- System Status Window -->
+    <div class="window" id="info-window" style="top: 120px; left: 550px;">
+      <div class="window-header" id="info-header">
+        <div class="window-buttons">
+          <span class="btn close"></span>
+          <span class="btn minimize"></span>
+          <span class="btn maximize"></span>
+        </div>
+        <div class="window-title">System Status</div>
+      </div>
+      <div class="window-body info-body">
+        <h3>WebOS X1 Core</h3>
+        <p><strong>Status:</strong> Active & Running</p>
+        <p><strong>Architecture:</strong> Vanilla JS / CSS Glassmorphism</p>
+        <p><strong>Custom Engine:</strong> Interactive Command Shell</p>
+      </div>
     </div>
+
   </div>
-</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
