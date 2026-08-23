@@ -1,99 +1,84 @@
-// 1. Live System Clock
-function updateClock() {
-  const clockElement = document.getElementById('clock');
-  if (clockElement) {
-    const now = new Date();
-    clockElement.innerText = now.toLocaleTimeString();
+function runClock() {
+  var d = new Date();
+  var clockEl = document.getElementById('clock-display');
+  if (clockEl) {
+    clockEl.innerText = d.toLocaleTimeString();
   }
 }
-setInterval(updateClock, 1000);
-updateClock();
+setInterval(runClock, 1000);
+runClock();
 
-// 2. Drag-and-Drop Mechanics
-function makeDraggable(windowEl, headerEl) {
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-  headerEl.onmousedown = dragMouseDown;
-
-  function dragMouseDown(e) {
-    e.preventDefault();
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
-    
-    // Bring clicked window to top
-    document.querySelectorAll('.window').forEach(w => w.style.zIndex = "1");
-    windowEl.style.zIndex = "10";
-  }
-
-  function elementDrag(e) {
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    windowEl.style.top = (windowEl.offsetTop - pos2) + "px";
-    windowEl.style.left = (windowEl.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
+function closeWin(id) {
+  var target = document.getElementById(id);
+  if (target) {
+    target.style.display = 'none';
   }
 }
 
-// Bind draggable logic to both windows
-makeDraggable(
-  document.getElementById('terminal-window'),
-  document.getElementById('terminal-header')
-);
-makeDraggable(
-  document.getElementById('info-window'),
-  document.getElementById('info-header')
-);
+function makeDraggable(winId, handleId) {
+  var win = document.getElementById(winId);
+  var handle = document.getElementById(handleId);
+  var x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 
-// 3. Terminal Command Processing
-const termInput = document.getElementById('term-input');
-const termOutput = document.getElementById('terminal-output');
+  if (!win || !handle) return;
+
+  handle.onmousedown = function(e) {
+    e.preventDefault();
+    x2 = e.clientX;
+    y2 = e.clientY;
+
+    document.onmousemove = function(e) {
+      e.preventDefault();
+      x1 = x2 - e.clientX;
+      y1 = y2 - e.clientY;
+      x2 = e.clientX;
+      y2 = e.clientY;
+
+      win.style.top = (win.offsetTop - y1) + "px";
+      win.style.left = (win.offsetLeft - x1) + "px";
+    };
+
+    document.onmouseup = function() {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  };
+}
+
+makeDraggable('win-terminal', 'win-terminal-bar');
+makeDraggable('win-notes', 'win-notes-bar');
+
+var termInput = document.getElementById('cmd-input');
+var termLogs = document.getElementById('term-logs');
 
 if (termInput) {
-  termInput.addEventListener('keydown', function (e) {
+  termInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
-      const command = termInput.value.trim().toLowerCase();
-      
-      const cmdLine = document.createElement('p');
-      cmdLine.innerHTML = `<span class="prompt">guest@webos-x1:~$</span> ${termInput.value}`;
-      termOutput.appendChild(cmdLine);
+      var txt = termInput.value.trim();
+      if (txt === '') return;
 
-      const response = document.createElement('p');
-      switch (command) {
-        case 'help':
-          response.innerHTML = 'Commands: <b>help</b>, <b>about</b>, <b>clear</b>, <b>date</b>';
-          break;
-        case 'about':
-          response.innerText = 'WebOS X1 - Vanilla JavaScript Desktop Environment.';
-          break;
-        case 'date':
-          response.innerText = new Date().toString();
-          break;
-        case 'clear':
-          termOutput.innerHTML = '';
-          termInput.value = '';
-          return;
-        case '':
-          response.innerText = '';
-          break;
-        default:
-          response.innerText = `Command not found: ${command}. Type 'help' for options.`;
+      var userLine = document.createElement('p');
+      userLine.innerText = '> ' + txt;
+      termLogs.appendChild(userLine);
+
+      var botLine = document.createElement('p');
+      var cmd = txt.toLowerCase();
+
+      if (cmd === 'help') {
+        botLine.innerText = 'Commands: help, info, clear';
+      } else if (cmd === 'info') {
+        botLine.innerText = 'Couscous OS - Custom Vanilla JS project.';
+      } else if (cmd === 'clear') {
+        termLogs.innerHTML = '';
+        termInput.value = '';
+        return;
+      } else {
+        botLine.innerText = 'Command not found: ' + txt;
       }
 
-      if (response.innerText !== '') {
-        termOutput.appendChild(response);
-      }
-
+      termLogs.appendChild(botLine);
       termInput.value = '';
-      termOutput.scrollTop = termOutput.scrollHeight;
+      termLogs.scrollTop = termLogs.scrollHeight;
     }
   });
 }
