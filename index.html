@@ -2,65 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ConscousX1</title>
+  <title>Couscous OS</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top Menu Bar -->
-  <div class="top-bar">
-    <div class="menu-left">
-      <span class="os-logo">⚡</span>
-      <span class="app-name">Conscous</span>
-      <span class="menu-item">System</span>
-      <span class="menu-item">Terminal</span>
-    </div>
-    <div class="menu-right">
-      <span id="clock">00:00:00 AM</span>
-    </div>
+  <div id="navbar">
+    <span class="title">Couscous OS</span>
+    <span id="clock-display">00:00</span>
   </div>
 
-  <!-- Desktop Canvas -->
-  <div class="desktop">
-
-    <!-- Terminal Window -->
-    <div class="window" id="terminal-window" style="top: 80px; left: 100px;">
-      <div class="window-header" id="terminal-header">
-        <div class="window-buttons">
-          <span class="btn close"></span>
-          <span class="btn minimize"></span>
-          <span class="btn maximize"></span>
-        </div>
-        <div class="window-title">guest@webos-x1:~</div>
+  <div id="desktop-area">
+  
+    <div class="app-window" id="win-terminal">
+      <div class="win-header" id="win-terminal-bar">
+        <span>Terminal.exe</span>
+        <button onclick="closeWin('win-terminal')">X</button>
       </div>
-      <div class="window-body terminal-body">
-        <div id="terminal-output">
-          <p>Welcome to WebOs X1 Shell</p>
-          <p>Type <span class="highlight">'help'</span> for available commands.</p>
+      <div class="win-content">
+        <div id="term-logs">
+          <p>Terminal</p>
+          <p>Type 'help' for cmd.</p>
         </div>
-        <div class="terminal-input-row">
-          <span class="prompt">guest@webos-x1:~$</span>
-          <input type="text" id="term-input" autofocus autocomplete="off" placeholder="Type here..." />
+        <div class="input-line">
+          <span>></span>
+          <input type="text" id="cmd-input">
         </div>
       </div>
     </div>
 
-    <!-- System Status Window -->
-    <div class="window" id="info-window" style="top: 120px; left: 550px;">
-      <div class="window-header" id="info-header">
-        <div class="window-buttons">
-          <span class="btn close"></span>
-          <span class="btn minimize"></span>
-          <span class="btn maximize"></span>
-        </div>
-        <div class="window-title">System Status</div>
+    <div class="app-window" id="win-notes" style="left: 380px;">
+      <div class="win-header" id="win-notes-bar">
+        <span>System Log</span>
+        <button onclick="closeWin('win-notes')">X</button>
       </div>
-      <div class="window-body info-body">
-        <h3>WebOS X1</h3>
-        <p><strong>Status:</strong> Active</p>
-        <p><strong>Architecture:</strong> Vanilla JS / CSS Glassmorphism</p>
-        <p><strong>Custom Engine:</strong> Interactive Command Shell</p>
+      <div class="win-content">
+        <h3>Couscous OS</h3>
+        <p><b>Kernel:</b> JavaScript (DOM Event Engine)</p>
+        <p><b>Memory:</b> Browser Session Storage</p>
+        <p><b>Recent Changes:</b></p>
+        <ul style="padding-left: 18px; margin-top: 4px;">
+          <li>Added custom mouse drag listeners</li>
+          <li>Built interactive command terminal</li>
+          <li>Fixed window closing mechanics</li>
+        </ul>
       </div>
     </div>
 
